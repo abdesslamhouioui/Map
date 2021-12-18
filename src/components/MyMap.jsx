@@ -51,5 +51,4 @@ const MyMap = ({ countyTarget, BuildingName }) => {
     </div>
   );
 };
-
 export default MyMap;

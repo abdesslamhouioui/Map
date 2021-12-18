@@ -15,20 +15,15 @@ const Main = () => {
   const state = useSelector((state) => state.clients);
   const activee = useSelector((state) => state.active);
   const add = useSelector((state) => state.add);
-  const [client, setclient] = useState(
-    clients[0] || { name: "building1", location: "Tunisia" }
-  );
+  const [client, setclient] = useState(clients[0] || { name: "building1", location: "Tunisia" });
   const [edit, setedit] = useState({});
-  useEffect(() => {
-    dispatch(show());
-  }, [dispatch]);
+  useEffect(() => {dispatch(show())}, [dispatch]);
   const [building, setbuilding] = useState(state[client][0])
-useEffect(() => {
-  setbuilding(state[client][0])
-}, [client])
+  useEffect(() => {setbuilding(state[client][0])}, [client])
   return (
     <div>
       <div className="main-div-1">
+        {/* Client dropdown */}
         <Dropdown onSelect={(e) => setclient(e.slice(1))}>
           <Dropdown.Toggle variant="secondary" id="dropdown-basic">
             {client}
@@ -48,36 +43,24 @@ useEffect(() => {
                 <h3 className="h3">Buildings</h3>
               </Accordion.Header>
               <Accordion.Body>
+                {/* Buildings list */}
                 <ListGroup as="ol" numbered>
                   {state[client].map((e) => (
                     <ListGroup.Item
                       as="li"
                       className="d-flex justify-content-between align-items-start"
                       onClick={() => {setbuilding({name:e.name,location:e.location});
-                        dispatch(
-                          active({ building: e.name, active: true })
-                        )
-                      }}
-                      active={
-                        activee.building === e.name ? activee.active : false
-                      }
-                    >
+                        dispatch(active({ building: e.name, active: true }))}}
+                      active={activee.building === e.name ? activee.active : false}>
                       <div className="ms-2 me-auto">
                         <div className="fw-bold">{e.name}</div>
                       </div>
-                      <Button
-                        variant="none"
-                        onClick={() => {
-                          setedit({ name: e.name, location: e.location });
-                          dispatch(show(true));
-                        }}
-                      >
+                      {/* Edit building button */}
+                      <Button variant="none"onClick={() => {setedit({ name: e.name, location: e.location });dispatch(show(true))}}>
                         <FontAwesomeIcon icon={faEdit} />
                       </Button>
-                      <Button
-                        variant="none"
-                        onClick={() => dispatch(deleteBuilding(client, e))}
-                      >
+                      {/* Delete building button */}
+                      <Button variant="none"onClick={() => dispatch(deleteBuilding(client, e))}>
                         <FontAwesomeIcon icon={faTrash} />
                       </Button>
                     </ListGroup.Item>
@@ -85,12 +68,8 @@ useEffect(() => {
                 </ListGroup>
               </Accordion.Body>
               <div className="main-div-4">
-                <Button
-                  onClick={() => {
-                    dispatch(show(true));
-                    setedit({});
-                  }}
-                >
+                {/* Add building button */}
+                <Button onClick={() => {dispatch(show(true));setedit({})}}>
                   Add Building
                 </Button>
               </div>
@@ -98,22 +77,9 @@ useEffect(() => {
           </Accordion>
         </div>
         <div className="main-div-5">
-          {add ? (
-            <AddForm key={edit.name} client={client} edit={edit} />
-          ) : (
-            <MyMap key={edit.location}
-              countyTarget={
-                state[client][0] !== undefined
-                  ? building.location
-                  : "Tunisia"
-              }
-              BuildingName={
-                state[client][0] !== undefined
-                  ? building.name
-                  : "Building1"
-              }
-            />
-          )}
+          {add ?<AddForm key={edit.name} client={client} edit={edit} />: 
+            <MyMap key={edit.location} countyTarget={state[client][0]!== undefined?building.location:"Tunisia"}
+              BuildingName={state[client][0]!== undefined? building.name:"building1"}/>}
         </div>
       </div>
     </div>

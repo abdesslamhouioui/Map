@@ -13,6 +13,7 @@ const AddForm = ({ client, edit }) => {
       <Form >
         <h4>Add/Edit building</h4>
         <Row className="mb-3">
+          {/* Building's name input */}
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Name</Form.Label>
             <Form.Control placeholder="Building Name" defaultValue={edit.name} 
@@ -20,6 +21,7 @@ const AddForm = ({ client, edit }) => {
           </Form.Group>
         </Row>
         <Row className="mb-3">
+          {/* Location input */}
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Location</Form.Label>
             <Form.Select defaultValue={edit.location} onChange={(e)=>setnewbuilding({...newbuilding,location:e.target.value})}>
@@ -29,12 +31,14 @@ const AddForm = ({ client, edit }) => {
         </Row>
         <br />
         <div className="='add-div-2" style={{ display: "flex" }}>
+          {/* Add/Edit button */}
           <Button variant="success" type="submit" onClick={(e) => {e.preventDefault();if(Object.keys(newbuilding).length>1) 
               {Object.keys(edit).length === 0?dispatch(addBuilding(client,newbuilding)):dispatch(editBuilding(client,newbuilding,edit));
                 dispatch(show(false))}else alert('Please fill all the fields')}}>
             {Object.keys(edit).length === 0?"Create":"Edit"}
           </Button>
           <div className="add-div-3">
+            {/* Cancel button */}
             <Button variant="danger" type="cancel" onClick={()=> dispatch(show(false))}>Cancel</Button>
           </div>
         </div>
