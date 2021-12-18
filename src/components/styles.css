@@ -1,0 +1,44 @@
+.main-div-1{
+    margin-left: 45% ;
+    margin-top: 50px ; 
+    margin-bottom: 50px ;
+}
+.main-div-2{
+    display: flex ;
+    justify-content: space-around;
+}
+.main-div-3{
+    width: 400px
+}
+.h3{
+    margin-left:110px
+}
+.accordion1{
+    text-align: center
+}
+.main-div-4{
+    margin-left:130px ;
+    margin-bottom:20px;
+    margin-top:20px
+}
+.main-div-5{
+    border: solid;
+    border-radius: 5px;
+    width: 900px;
+    margin-bottom: 50px
+}
+body{
+    background-color: rgb(236, 236, 231);
+}
+.map{
+    height: 60vh
+}
+.add-div-1{
+    width: 600px;
+    margin-left: 80px;
+    margin-top: 20px;
+    margin-bottom:20px
+}
+.add-div-3{
+    margin-left: 20px
+}
