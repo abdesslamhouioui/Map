@@ -7,7 +7,6 @@ import L from "leaflet";
 import "./styles.css";
 
 const MyMap = ({ countyTarget, BuildingName }) => {
-  console.log(countyTarget);
   const [countryTarget, setcountryTarget] = useState({});
   useEffect(() => {
     const countyTargetInfo = countriesList.filter(
@@ -21,7 +20,6 @@ const MyMap = ({ countyTarget, BuildingName }) => {
 
   const onEachCountry = (country, layer) => {
     let countryId = country.properties.name;
-    console.log(countyTarget);
     if (countryId === countyTarget) {
       layer.setStyle({
         fillColor: "#dfadad",

@@ -20,6 +20,10 @@ const Main = () => {
   useEffect(() => {dispatch(show())}, [dispatch]);
   const [building, setbuilding] = useState(state[client][0])
   useEffect(() => {setbuilding(state[client][0])}, [client])
+  const [testt, settestt] = useState()
+  const test = (newbuilding)=>{settestt(newbuilding)}
+  useEffect(() => {if (testt)setbuilding(testt)}, [testt])
+
   return (
     <div>
       <div className="main-div-1">
@@ -77,8 +81,8 @@ const Main = () => {
           </Accordion>
         </div>
         <div className="main-div-5">
-          {add ?<AddForm key={edit.name} client={client} edit={edit} />: 
-            <MyMap key={edit.location} countyTarget={state[client][0]!== undefined?building.location:"Tunisia"}
+          {add ?<AddForm key={edit.name} test={test} client={client} edit={edit} />: 
+            <MyMap key={edit} countyTarget={state[client][0]!== undefined?building.location:"Tunisia"}
               BuildingName={state[client][0]!== undefined? building.name:"building1"}/>}
         </div>
       </div>

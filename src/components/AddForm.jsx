@@ -5,7 +5,7 @@ import { addBuilding, editBuilding, show } from "../Redux/actions";
 import { useDispatch } from "react-redux";
 import "./styles.css";
 
-const AddForm = ({ client, edit }) => {
+const AddForm = ({ client, edit,test }) => {
   const dispatch = useDispatch()
   const [newbuilding, setnewbuilding] = useState(Object.keys(edit).length?edit:{location:countries[0].name})
   return (
@@ -34,7 +34,7 @@ const AddForm = ({ client, edit }) => {
           {/* Add/Edit button */}
           <Button variant="success" type="submit" onClick={(e) => {e.preventDefault();if(Object.keys(newbuilding).length>1) 
               {Object.keys(edit).length === 0?dispatch(addBuilding(client,newbuilding)):dispatch(editBuilding(client,newbuilding,edit));
-                dispatch(show(false))}else alert('Please fill all the fields')}}>
+                dispatch(show(false));}else alert('Please fill all the fields');test(newbuilding);}}>
             {Object.keys(edit).length === 0?"Create":"Edit"}
           </Button>
           <div className="add-div-3">
